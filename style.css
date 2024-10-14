@@ -9,20 +9,24 @@
   --bg-url: url(./assets/bg-mobile.jpg);
   --stroke-color: rgba(255, 255, 255, 0.3); /*cor da borda*/
   --surface-color: rgba(255, 255, 255, 0.05); /*cor do fundo*/
-  --surface-color-hover: rgba(0, 0, 0, 0.02); /*cor do fundo quando passa o mouse na rede social*/
+  --surface-color-hover: rgba(
+    0,
+    0,
+    0,
+    0.02
+  ); /*cor do fundo quando passa o mouse na rede social*/
   --highlight-color: rgba(255, 255, 255, 0.1); /*cor de destaque*/
   --switch-bg-url: url(./assets/moon-stars.svg); /*imagem do botão switch*/
 }
 
 .light {
   --text-color: black;
-  --bg-url: url(./assets/bg-mobile-light.jpg);  
+  --bg-url: url(./assets/bg-mobile-light.jpg);
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(0, 0, 0, 0.05);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
   --highlight-color: rgba(0, 0, 0, 0.1);
-  --switch-bg-url: url(./assets/sun.svg); 
-  
+  --switch-bg-url: url(./assets/sun.svg);
 }
 
 body {
@@ -72,7 +76,7 @@ body * {
   margin: 4px auto;
 }
 
-#switch button{
+#switch button {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -83,26 +87,34 @@ body * {
   top: 50%;
   right: 0;
   left: 0;
-  z-index: 1;/*posicionamento em primeiro plano*/
+  z-index: 1; /*posicionamento em primeiro plano*/
   transform: translateY(-50%);
+
+  animation: slide-back 0.2s;
 }
 
-.light #switch button{
-  right: 0; /*posicionamento para a direita*/
-  left: initial; /*posicionamento para a esquerda*/
+.light #switch button {
+  animation: slide-in 0.4s forwards;
 }
 
-#switch span{
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
+
+#switch span {
   display: block;
   width: 64px;
   height: 24px;
   background: var(--surface-color);
   border: 1px solid var(--stroke-color);
-  backdrop-filter: blur(4px); /*efeito da imagem de fundo:suavização, transparência e desfoque "blur" */
-  -webkit-backdrop-filter: blur(4px); /*dependendo do browsers precisa usar o webkit*/
+  backdrop-filter: blur(
+    4px
+  ); /*efeito da imagem de fundo:suavização, transparência e desfoque "blur" */
+  -webkit-backdrop-filter: blur(
+    4px
+  ); /*dependendo do browsers precisa usar o webkit*/
   border-radius: 9999px;
 }
-
 
 /*---links---*/
 ul {
@@ -169,13 +181,33 @@ footer {
   font-size: 14px;
 }
 
-/*---media queries---*/ 
-@media (min-width: 700px) { /*a partir de 700pixels*/ 
+/*---media queries---*/
+@media (min-width: 700px) {
+  /*a partir de 700pixels*/
   :root {
     --bg-url: url(./assets/bg-desktop.jpg);
   }
 
-  .light {  
+  .light {
     --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/*---animation---*/
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
   }
 }
